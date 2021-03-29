@@ -1,7 +1,7 @@
 <%= form_with(model: question, local: true) do |form| %>
   <% if question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <h2><%= pluralize(question.errors.count, "error") %> 投稿に失敗しました</h2>
 
       <ul>
         <% question.errors.full_messages.each do |message| %>
@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_name %>
+  <h4 class="field py-3">
+    <%= form.label :質問者名 %>
     <%= form.text_field :user_name %>
-  </div>
+  </h4>
 
-  <div class="field">
-    <%= form.label :title %>
+  <h4 class="field py-3">
+    <%= form.label :タイトル %>
     <%= form.text_field :title %>
-  </div>
+  </h4>
 
-  <div class="field">
-    <%= form.label :content %>
+  <h4 class="field py-3">
+    <%= form.label :質問内容 %>
     <%= form.text_area :content %>
-  </div>
+  </h4>
 
-  <div class="field">
-    <%= form.label :priority %>
+  <h4 class="field py-3">
+    <%= form.label :困ってる度 %>
     <%= form.number_field :priority %>
-  </div>
+  </h4>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <h4 class="actions py-3">
+    <%= form.submit "質問する" %>
+  </h4>
 <% end %>
