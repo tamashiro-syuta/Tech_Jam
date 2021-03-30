@@ -16,5 +16,4 @@
 </p>
 
 <%= link_to '編集', edit_answer_path(@answer) %> |
-<%# 下のリンクの「１」の部分はダミー、今後訂正する %>
-<%= link_to '回答する', "/questions/detail/1" %>
+<%= link_to '回答する', "/questions/detail/#{@answer.question_id}" %>

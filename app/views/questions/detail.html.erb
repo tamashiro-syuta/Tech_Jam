@@ -47,42 +47,9 @@
     </div>
 </div>
 
-<div class="row text-center">
-    <div class="col-4"></div>
-    
-    <div class="col-4 py-5">
-        <h1 class="py-3">質問回答フォーム</h1>
-        <%= render './answers/form' %>
-    </div>
-    
-    <div class="col-4"></div>
-</div>
-
-
-
-<%= form_tag("/detail/#{@id.to_i}") do %>
-    <div class="col-4 pt-3">回答欄</div>
-        <div class="accordion my-6 col-8" id="accordionExample">
-            <div class="card"> 
-                <textarea class="col-12 " name="user_name"></textarea>
-                <textarea class="col-12 " name="content"></textarea>
-                <input type="submit" value="回答する">
-            </div>
-        </div>
-    </div>
-
-        <%
-=begin%>
- <%= @questionsa = Answer.new(user_name:params[:user_name],content:params[:content],question_id:@id.to_i)%>
-        <%= @questionsa.save%> 
-<%
-=end%>
-<% end %>
-
 
 <%# この投稿に対する回答を配列で取得し、それをeachで回して表示したい %>
-<% @answer_qsid = Answer.where(question_id: params[:id])%>
-<% @answer_qsid.each do |answer| %>
+<% @answers_array.each do |answer| %>
     <div class="post container mx-auto my-5 py-5 border row">
 
 
@@ -102,7 +69,7 @@
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-<%= @questionf_id.id %>" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-<%= @question.id %>" aria-expanded="true" aria-controls="collapseOne">
                             <%= answer.content%>
                         </button>
                     </h5>
@@ -112,3 +79,14 @@
 
     </div>
 <% end %>
+
+<div class="row text-center">
+    <div class="col-4"></div>
+    
+    <div class="col-4 py-5">
+        <h1 class="py-3">質問回答フォーム</h1>
+        <%= render './answers/form' %>
+    </div>
+
+    <div class="col-4"></div>
+</div>
