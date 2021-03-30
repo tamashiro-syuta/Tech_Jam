@@ -1,0 +1,14 @@
+<div class="row text-center">
+    <div class="col-4"></div>
+
+    <div class="col-4 py-5">
+        <h1 class="py-3">質問フォーム</h1>
+
+        <%= render 'form', question: @question %>
+
+        <h5>
+            <%= link_to '戻る', questions_path %>
+        </h5>
+    </div>
+    <div class="col-4"></div>
+</div>
