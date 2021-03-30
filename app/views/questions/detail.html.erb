@@ -38,7 +38,7 @@
                 </h5>
             </div>
 
-            <div id="collapse<%= @question.id%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapse<%= @question.id%>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <%= @question.content %>
                 </div>
@@ -46,6 +46,19 @@
         </div>
     </div>
 </div>
+
+<div class="row text-center">
+    <div class="col-4"></div>
+    
+    <div class="col-4 py-5">
+        <h1 class="py-3">質問回答フォーム</h1>
+        <%= render './answers/form' %>
+    </div>
+    
+    <div class="col-4"></div>
+</div>
+
+
 
 <%= form_tag("/detail/#{@id.to_i}") do %>
     <div class="col-4 pt-3">回答欄</div>
