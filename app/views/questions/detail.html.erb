@@ -6,6 +6,9 @@
 
 <%# @question = Question.find(params[:id]) %>
 
+<div class="container pt-5">
+    <p class="h1">＜ 質 問 ＞<p>
+</div>
 
 <div class="post container mx-auto my-5 py-5 border row">
 
@@ -48,6 +51,9 @@
     </div>
 </div>
 
+<div class="container">
+    <p class="h1">＜ 回 答 ＞<p>
+</div>
 
 <%# この投稿に対する回答を配列で取得し、それをeachで回して表示したい %>
 <% @answers_array.each do |answer| %>
