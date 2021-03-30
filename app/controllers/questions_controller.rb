@@ -58,7 +58,9 @@ class QuestionsController < ApplicationController
   
   def detail
     # 2行目のbefore_actionでdetailでもset_action(67~69行目)が使えるようにしてる
+    session[:current_question] = @question
     @answer = Answer.new  #Answerのインスタンス生成
+    @answers_array = Answer.where(question_id: params[:id])
   end
 
   private
