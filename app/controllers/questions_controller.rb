@@ -66,4 +66,9 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:user_name, :title, :content, :priority)
     end
+    def detail
+      @quser = Question.find(id: params[:id])
+      @answer = answer.new
+    end
+
 end

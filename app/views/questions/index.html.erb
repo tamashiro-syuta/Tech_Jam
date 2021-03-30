@@ -1,3 +1,106 @@
+
+<% @questions.each do |question| %>
+  <div class="post container mx-auto my-5 py-5 border row">
+
+
+    <div class="name col-6">
+        <h3><%= question.user_name %></h3>
+    </div>
+
+    <div class="komaru col-3">
+        <p>困ってる度</p>
+        <p><%= question.priority %></p>
+    </div>
+
+    <div class="date col-3">
+        <p>質問日</p>
+        <p>2021年3月26日</p>
+    </div>
+
+    <div class="title col-12 py-3">
+        <h1><%= link_to"タイトル","/detail/#{question.id}"%></a></h1>
+    </div>
+
+    <div class="accordion col-12" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= question.id%>" aria-expanded="true" aria-controls="collapseOne">
+              <%= question.title %>
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapse<%= question.id%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <%= question.content %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="response col-12 text-right">
+        <p class="p-1 pr-3">◯件の返信</p>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+<div class="post container mx-auto my-5 py-5 border row">
+
+    <div class="name col-6">
+        <h3>名前さん</h3>
+    </div>
+
+    <div class="komaru col-3">
+        <p>困ってる度</p>
+        <p>100</p>
+    </div>
+
+    <div class="date col-3">
+        <p>質問日</p>
+        <p>2021年3月26日</p>
+    </div>
+
+    <div class="title col-12 py-3">
+        <h1><a href="#">タイトル</a></h1>
+    </div>
+
+    <div class="accordion col-12" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
+          質問内容
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapse2" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。
+        質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。
+        質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。質問内容です。
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="response col-12 text-right">
+        <p class="p-1 pr-3">◯件の返信</p>
+    </div>
+
+</div>
+
+
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Questions</h1>
