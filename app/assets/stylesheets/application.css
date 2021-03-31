@@ -13,5 +13,19 @@
  *= require_tree .
  *= require_self
  */
- @import "font-awesome-sprockets";
- @import "font-awesome";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.service_name {
+  font-family: "Anton";
+}
+
+.navbar {
+  background-color: gainsboro;
+}
+
+img {
+  height: 80px;
+  width: 200px;
+}

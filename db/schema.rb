@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_060200) do
     t.string "user_name"
     t.string "title"
     t.text "content"
-    t.integer "priority",
+    t.integer "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
