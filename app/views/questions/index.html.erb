@@ -1,16 +1,23 @@
-
-<% @questions.each do |question| %>
+<%= stylesheet_link_tag "style", :media => "all" %>
+<%= javascript_include_tag "" %>
+<p>
+<%= @questions.each do |question| %>
   <div class="post container mx-auto my-5 py-5 border row">
-
 
     <div class="name col-6">
         <h3><%= question.user_name %></h3>
     </div>
 
     <div class="komaru col-3">
-        <p>困ってる度</p>
+        <p　class="font-weight-bold">困ってる度</p>
+
+
+        <% for i in 1..question.priority do %>
+          <i class="far fa-meh icon"></i>
+        <% end %>  
         <p><%= question.priority %></p>
     </div>
+    
 
     <div class="date col-3">
         <p>質問日</p>
@@ -46,6 +53,13 @@
 <% end %>
 
 
+
+
+
+
+
+<%= icon("fab", "twitter", class: "twitter-icon") %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>質問一覧</h1>
@@ -77,5 +91,14 @@
 </table>
 
 <br>
+<i class="fas fa-allergies"></i>
+</div>
+<i class="far fa-meh"></i>
+
+
+<%= link_to 'New Question', new_question_path %>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 <%= link_to '質問する', new_question_path %>
+
