@@ -25,7 +25,7 @@
     </div>
 
     <div class="title col-12 py-3">
-        <h1><%= link_to"タイトル","/detail/#{question.id}"%></a></h1>
+        <h1><%= link_to"タイトル","questions/detail/#{question.id}"%></a></h1>
     </div>
 
     <div class="accordion col-12" id="accordionExample">
@@ -57,12 +57,48 @@
 
 
 
+
 <%= icon("fab", "twitter", class: "twitter-icon") %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>質問一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>質問者</th>
+      <th>タイトル</th>
+      <th>質問内容</th>
+      <th>困ってる度</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.user_name %></td>
+        <td><%= question.title %></td>
+        <td><%= question.content %></td>
+        <td><%= question.priority %></td>
+        <td><%= link_to '詳細', question %></td>
+        <td><%= link_to '編集', edit_question_path(question) %></td>
+        <td><%= link_to '削除', question, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br>
 <i class="fas fa-allergies"></i>
 </div>
 <i class="far fa-meh"></i>
 
+
 <%= link_to 'New Question', new_question_path %>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<%= link_to '質問する', new_question_path %>
+

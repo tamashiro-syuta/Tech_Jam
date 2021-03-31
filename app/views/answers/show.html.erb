@@ -15,5 +15,5 @@
   <%= @answer.question_id %>
 </p>
 
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+<%= link_to '編集', edit_answer_path(@answer) %> |
+<%= link_to '回答する', "/questions/detail/#{@answer.question_id}" %>

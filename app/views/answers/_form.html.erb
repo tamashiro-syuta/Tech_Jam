@@ -1,10 +1,10 @@
-<%= form_with(model: answer, local: true) do |form| %>
-  <% if answer.errors.any? %>
+<%= form_with(model: @answer, local: true) do |form| %>
+  <% if @answer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(answer.errors.count, "error") %> 投稿に失敗しました</h2>
+      <h2><%= pluralize(@answer.errors.count, "error") %> 投稿に失敗しました</h2>
 
       <ul>
-        <% answer.errors.full_messages.each do |message| %>
+        <% @answer.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
