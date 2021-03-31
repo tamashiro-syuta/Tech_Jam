@@ -1,72 +1,55 @@
-
-<% @id = params[:id] %>
-<% @id = @id.to_i %>
-<% @questionf_id = Question.find(@id) %>
-<% @questionf_id.user_name %>
-
+<div class="container pt-5">
+    <p class="h1">＜ 質 問 ＞<p>
+</div>
 
 <div class="post container mx-auto my-5 py-5 border row">
 
 
     <div class="name col-6">
-        <h3><%= @questionf_id.user_name %></h3>
+        <h3><%= @question.user_name %></h3>
     </div>
 
     <div class="komaru col-3">
         <p>困ってる度</p>
-        <p><%= @questionf_id.priority %></p>
+        <p><%= @question.priority %></p>
     </div>
 
     <div class="date col-3">
         <p>質問日</p>
-        <p>2021年3月26日</p>
+        <p></p>
+        <p><%=@question.created_at.year%>年<%=@question.created_at.month%>月<%=@question.created_at.day%>日</p>
     </div>
 
     <div class="title col-12 py-3">
-        <h1><%= link_to"タイトル","/detail/#{@questionf_id.id}"%></h1>
+        <h1><%= link_to"タイトル","/detail/#{@question.id}"%></h1>
     </div>
 
     <div class="accordion col-12" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
-                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= @questionf_id.id%>" aria-expanded="true" aria-controls="collapseOne">
-                 <%= @questionf_id.title %>
+                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= @question.id%>" aria-expanded="true" aria-controls="collapseOne">
+                 <%= @question.title %>
                  </button>
                 </h5>
             </div>
 
-            <div id="collapse<%= @questionf_id.id%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapse<%= @question.id%>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
-                    <%= @questionf_id.content %>
+                    <%= @question.content %>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<%= form_tag("/detail/#{@id.to_i}") do %>
-    <div class="col-4 pt-3">回答欄</div>
-        <div class="accordion my-6 col-8" id="accordionExample">
-            <div class="card"> 
-                <textarea class="col-12 " name="user_name"></textarea>
-                <textarea class="col-12 " name="content"></textarea>
-                <input type="submit" value="回答する">
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <p class="h1">＜ 回 答 ＞<p>
+</div>
 
-        <%
-=begin%>
- <%= @questionsa = Answer.new(user_name:params[:user_name],content:params[:content],question_id:@id.to_i)%>
-        <%= @questionsa.save%> 
-<%
-=end%>
-<% end %>
-<% @answer_qsid = Answer.where(question_id: params[:id])%>
-<% @answer_qsid.each do |answer| %>
+<%# この投稿に対する回答を配列で取得し、それをeachで回して表示したい %>
+<% @answers_array.each do |answer| %>
     <div class="post container mx-auto my-5 py-5 border row">
-
 
         <div class="name col-6">
             <h3><%= answer.user_name %></h3>
@@ -75,8 +58,8 @@
 
 
         <div class="date col-3">
-            <p>質問日</p>
-            <p>2021年3月26日</p>
+            <p>回答日</p>
+            <p><%=answer.created_at.year%>/<%=answer.created_at.month%>/<%=answer.created_at.day%></p>
         </div>
 
 
@@ -84,7 +67,7 @@
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-<%= @questionf_id.id %>" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse-<%= @question.id %>" aria-expanded="true" aria-controls="collapseOne">
                             <%= answer.content%>
                         </button>
                     </h5>
@@ -94,3 +77,14 @@
 
     </div>
 <% end %>
+
+<div class="row text-center">
+    <div class="col-4"></div>
+    
+    <div class="col-4 py-5">
+        <h1 class="py-3">質問回答フォーム</h1>
+        <%= render './answers/form' %>
+    </div>
+
+    <div class="col-4"></div>
+</div>

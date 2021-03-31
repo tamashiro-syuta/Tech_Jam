@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :set_question, only: %i[ show edit update destroy detail ]
 
   # GET /questions or /questions.json
   def index
@@ -55,6 +55,13 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def detail
+    # 2行目のbefore_actionでdetailでもset_action(67~69行目)が使えるようにしてる
+    session[:current_question] = @question
+    @answer = Answer.new  #Answerのインスタンス生成
+    @answers_array = Answer.where(question_id: params[:id])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -65,10 +72,6 @@ class QuestionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def question_params
       params.require(:question).permit(:user_name, :title, :content, :priority)
-    end
-    def detail
-      @quser = Question.find(id: params[:id])
-      @answer = answer.new
     end
 
 end

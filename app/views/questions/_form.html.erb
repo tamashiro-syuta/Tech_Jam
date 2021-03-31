@@ -13,7 +13,7 @@
 
   <h4 class="field py-3">
     <%= form.label :質問者名 %>
-    <%= form.text_field :user_name %>
+    <%= form.text_field :user_name%>
   </h4>
 
   <h4 class="field py-3">
@@ -28,7 +28,14 @@
 
   <h4 class="field py-3">
     <%= form.label :困ってる度 %>
-    <%= form.number_field :priority %>
+    <p>1,2,3,4,5</p><i class="far fa-meh icon"></i>
+    <%= form.radio_button :priority, 1,checked: true%>
+    <%= form.radio_button :priority, 2%>
+    <%= form.radio_button :priority, 3%>
+    <%= form.radio_button :priority, 4%>
+    <%= form.radio_button :priority, 5%>
+
+    <!-- http://localhost:3000/users/new -->
   </h4>
 
   <h4 class="actions py-3">

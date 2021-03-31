@@ -1,0 +1,299 @@
+diff --git a/app/assets/stylesheets/scaffolds.scss b/app/assets/stylesheets/scaffolds.scss
+index bb2597f..7909a7d 100644
+--- a/app/assets/stylesheets/scaffolds.scss
++++ b/app/assets/stylesheets/scaffolds.scss
+@@ -1,52 +1,67 @@
+ body {
+   background-color: #fff;
+   color: #333;
+-  margin: 33px; }
++}
+ 
+-body, p, ol, ul, td {
++body,
++p,
++ol,
++ul,
++td {
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+-  line-height: 18px; }
++  line-height: 18px;
++}
+ 
+ pre {
+   background-color: #eee;
+   padding: 10px;
+-  font-size: 11px; }
++  font-size: 11px;
++}
+ 
+ a {
+-  color: #000; }
++  color: #000;
++}
+ 
+ a:visited {
+-  color: #666; }
++  color: #666;
++}
+ 
+ a:hover {
+   color: #fff;
+-  background-color: #000; }
++  background-color: #000;
++}
+ 
+ th {
+-  padding-bottom: 5px; }
++  padding-bottom: 5px;
++}
+ 
+ td {
+-  padding: 0 5px 7px; }
++  padding: 0 5px 7px;
++}
+ 
+ div.field,
+ div.actions {
+-  margin-bottom: 10px; }
++  margin-bottom: 10px;
++}
+ 
+ #notice {
+-  color: green; }
++  color: green;
++}
+ 
+ .field_with_errors {
+   padding: 2px;
+   background-color: red;
+-  display: table; }
++  display: table;
++}
+ 
+ #error_explanation {
+   width: 450px;
+   border: 2px solid red;
+   padding: 7px 7px 0;
+   margin-bottom: 20px;
+-  background-color: #f0f0f0; }
++  background-color: #f0f0f0;
++}
+ 
+ #error_explanation h2 {
+   text-align: left;
+@@ -55,11 +70,14 @@ div.actions {
+   font-size: 12px;
+   margin: -7px -7px 0;
+   background-color: #c00;
+-  color: #fff; }
++  color: #fff;
++}
+ 
+ #error_explanation ul li {
+   font-size: 12px;
+-  list-style: square; }
++  list-style: square;
++}
+ 
+ label {
+-  display: block; }
++  display: block;
++}
+diff --git a/app/views/answers/_form.html.erb b/app/views/answers/_form.html.erb
+index d23c10b..8794f91 100644
+--- a/app/views/answers/_form.html.erb
++++ b/app/views/answers/_form.html.erb
+@@ -1,7 +1,7 @@
+ <%= form_with(model: answer, local: true) do |form| %>
+   <% if answer.errors.any? %>
+     <div id="error_explanation">
+-      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
++      <h2><%= pluralize(answer.errors.count, "error") %> 投稿に失敗しました</h2>
+ 
+       <ul>
+         <% answer.errors.full_messages.each do |message| %>
+@@ -11,22 +11,22 @@
+     </div>
+   <% end %>
+ 
+-  <div class="field">
+-    <%= form.label :user_name %>
++  <h4 class="field py-3">
++    <%= form.label :回答者 %>
+     <%= form.text_field :user_name %>
+-  </div>
++  </h4>
+ 
+-  <div class="field">
+-    <%= form.label :content %>
++  <h4 class="field py-3">
++    <%= form.label :回答内容 %>
+     <%= form.text_area :content %>
+-  </div>
++  </h4>
+ 
+-  <div class="field">
+-    <%= form.label :question_id %>
+-    <%= form.number_field :question_id %>
+-  </div>
++  <h4 class="field py-3">
++    <%#= form.label :question_id %>
++    <%#= form.number_field :question_id %>
++  </h4>
+ 
+-  <div class="actions">
+-    <%= form.submit %>
+-  </div>
++  <h4 class="actions py-3">
++    <%= form.submit "回答する" %>
++  </h4>
+ <% end %>
+diff --git a/app/views/answers/edit.html.erb b/app/views/answers/edit.html.erb
+index 596635e..f3114fd 100644
+--- a/app/views/answers/edit.html.erb
++++ b/app/views/answers/edit.html.erb
+@@ -2,5 +2,5 @@
+ 
+ <%= render 'form', answer: @answer %>
+ 
+-<%= link_to 'Show', @answer %> |
+-<%= link_to 'Back', answers_path %>
++<%= link_to '詳細', @answer %> |
++<%= link_to '戻る', answers_path %>
+diff --git a/app/views/answers/new.html.erb b/app/views/answers/new.html.erb
+index d1064d6..28d7b49 100644
+--- a/app/views/answers/new.html.erb
++++ b/app/views/answers/new.html.erb
+@@ -1,5 +1,14 @@
+-<h1>New Answer</h1>
++<div class="row text-center">
++    <div class="col-4"></div>
++    <div class="col-4 py-5">
++    <h1 class="py-3">質問回答フォーム</h1>
+ 
+-<%= render 'form', answer: @answer %>
++    <%= render 'form', answer: @answer %>
+ 
+-<%= link_to 'Back', answers_path %>
++    <h5>
++        <%= link_to '戻る', answers_path %>
++    </h5>
++    </div>
++
++    <div class="col-4"></div>
++</div>
+\ No newline at end of file
+diff --git a/app/views/answers/show.html.erb b/app/views/answers/show.html.erb
+index 732ce79..53d39c6 100644
+--- a/app/views/answers/show.html.erb
++++ b/app/views/answers/show.html.erb
+@@ -1,12 +1,12 @@
+ <p id="notice"><%= notice %></p>
+ 
+ <p>
+-  <strong>User name:</strong>
++  <strong>回答者:</strong>
+   <%= @answer.user_name %>
+ </p>
+ 
+ <p>
+-  <strong>Content:</strong>
++  <strong>回答内容:</strong>
+   <%= @answer.content %>
+ </p>
+ 
+diff --git a/app/views/questions/_form.html.erb b/app/views/questions/_form.html.erb
+index 855b0be..5783de2 100644
+--- a/app/views/questions/_form.html.erb
++++ b/app/views/questions/_form.html.erb
+@@ -1,7 +1,7 @@
+ <%= form_with(model: question, local: true) do |form| %>
+   <% if question.errors.any? %>
+     <div id="error_explanation">
+-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
++      <h2><%= pluralize(question.errors.count, "error") %> 投稿に失敗しました</h2>
+ 
+       <ul>
+         <% question.errors.full_messages.each do |message| %>
+@@ -11,27 +11,27 @@
+     </div>
+   <% end %>
+ 
+-  <div class="field">
+-    <%= form.label :user_name %>
++  <h4 class="field py-3">
++    <%= form.label :質問者名 %>
+     <%= form.text_field :user_name %>
+-  </div>
++  </h4>
+ 
+-  <div class="field">
+-    <%= form.label :title %>
++  <h4 class="field py-3">
++    <%= form.label :タイトル %>
+     <%= form.text_field :title %>
+-  </div>
++  </h4>
+ 
+-  <div class="field">
+-    <%= form.label :content %>
++  <h4 class="field py-3">
++    <%= form.label :質問内容 %>
+     <%= form.text_area :content %>
+-  </div>
++  </h4>
+ 
+-  <div class="field">
+-    <%= form.label :priority %>
++  <h4 class="field py-3">
++    <%= form.label :困ってる度 %>
+     <%= form.number_field :priority %>
+-  </div>
++  </h4>
+ 
+-  <div class="actions">
+-    <%= form.submit %>
+-  </div>
++  <h4 class="actions py-3">
++    <%= form.submit "質問する" %>
++  </h4>
+ <% end %>
+diff --git a/app/views/questions/edit.html.erb b/app/views/questions/edit.html.erb
+index 8140146..7e1d2b7 100644
+--- a/app/views/questions/edit.html.erb
++++ b/app/views/questions/edit.html.erb
+@@ -1,6 +1,6 @@
+-<h1>Editing Question</h1>
++<h1>投稿編集</h1>
+ 
+ <%= render 'form', question: @question %>
+ 
+-<%= link_to 'Show', @question %> |
+-<%= link_to 'Back', questions_path %>
++<%= link_to '詳細', @question %> |
++<%= link_to '戻る', questions_path %>
+diff --git a/app/views/questions/new.html.erb b/app/views/questions/new.html.erb
+index 2d2d9b4..e85c120 100644
+--- a/app/views/questions/new.html.erb
++++ b/app/views/questions/new.html.erb
+@@ -1,5 +1,14 @@
+-<h1>New Question</h1>
++<div class="row text-center">
++    <div class="col-4"></div>
+ 
+-<%= render 'form', question: @question %>
++    <div class="col-4 py-5">
++        <h1 class="py-3">質問フォーム</h1>
+ 
+-<%= link_to 'Back', questions_path %>
++        <%= render 'form', question: @question %>
++
++        <h5>
++            <%= link_to '戻る', questions_path %>
++        </h5>
++    </div>
++    <div class="col-4"></div>
++</div>
+\ No newline at end of file

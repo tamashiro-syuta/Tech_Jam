@@ -14,10 +14,18 @@
  *= require_self
  */
 
-.servise_name {
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.service_name {
   font-family: "Anton";
 }
 
 .navbar {
-  background-color: greenyellow;
+  background-color: gainsboro;
+}
+
+img {
+  height: 80px;
+  width: 200px;
 }

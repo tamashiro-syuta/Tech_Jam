@@ -24,8 +24,9 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     respond_to do |format|
+      @answer.question_id = session[:current_question]["id"]
       if @answer.save
-        format.html { redirect_to @answer, notice: "Answer was successfully created." }
+        format.html { redirect_to @answer, notice: "回答しました" }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,6 +65,6 @@ class AnswersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def answer_params
-      params.require(:answer).permit(:user_name, :content, :question_id)
+      params.require(:answer).permit(:user_name, :content)
     end
 end

@@ -19,8 +19,9 @@ pre {
   font-size: 11px;
 }
 
-a {
+.navbar a {
   color: #000;
+  font-size: 20px;
 }
 
 a:visited {
@@ -29,7 +30,7 @@ a:visited {
 
 a:hover {
   color: #fff;
-  background-color: #000;
+  background-color: rgb(98, 206, 55);
 }
 
 th {
