@@ -8,8 +8,10 @@
     <%# jQueryとbootstrap %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# fontosmome%>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <%= stylesheet_link_tag "style", :media => "all" %>
   </head>
 
   <body>
@@ -23,15 +25,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item active pr-5">
-                <a class="nav-link btn btn-success my-2 my-sm-0" href="#">質問する <span class="sr-only">(current)</span></a>
+
+                <a class="nav-link" href="#"><i class="fas fa-graduation-cap icon"></i>質問する <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item pr-5">
-                <a class="nav-link btn btn-success my-2 my-sm-0" href="#">質問一覧</a>
+                <a class="nav-link" href="#"><i class="fas fa-align-justify icon"></i>質問に答える<span class="sr-only"></a>
+
               </li>
           </ul>
           <form class="form-inline my-2 my-lg-0 pr-5">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">質問を検索する</button>
           </form>
         </div>
       </nav>
